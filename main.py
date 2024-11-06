@@ -1,11 +1,20 @@
-from flask import Flask
+from flask import Flask, render_template, abort, url_for
 
-app = Flask(__name__)
+app = app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "<p>Willkommen beim Schlagzeilensammler</p>"
+    return render_template("index.html")
 
-@app.route("/api")
-def api():
-    return "<p>TODO</p>"
+@app.route("/headlines")
+def headlines_api():
+    headlines = [
+        "Trump erneut Präsident!",
+        "Barcelona Kantersieg in der Champions League!",
+        "Programmierer immer noch arbeitslos",
+    ]
+    return headlines
+
+@app.route("/settings")
+def settings():
+    abort(501)
