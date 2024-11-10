@@ -1,3 +1,53 @@
 h1 {
-    color: red;
+    color: rgb(31, 52, 110);
+}
+
+.logo {
+    max-width: 75px;
+    aspect-ratio: 1/1;
+  }
+
+body {
+margin: 2%;
+}
+
+@media (max-width: 500px) {
+    .img.img {
+        display:none;
+    }
+}
+@media (min-width: 500px) {  
+
+    .media-element {
+    display: grid;
+    grid-template-columns: minmax(auto, 75px) 1fr;
+    grid-template-rows:  1fr;
+    grid-template-areas:
+        "logo date"
+        "logo title"
+        "description description";
+    grid-gap: 0 1em;
+    margin-bottom: 0.5em;
+    text-align: left;
+    border: 1px solid grey;
+    }
+   
+    .title {
+        grid-area: title;
+        margin-bottom: 0;
+    }
+
+    .description {
+        grid-area: description;
+    }
+
+    .date {
+        grid-area: date;
+        margin: 0;
+    }
+
+    .img {
+        grid-area: logo;
+        place-self: center;
+    }
 }
