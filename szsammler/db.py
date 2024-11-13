@@ -1,34 +1,36 @@
 from flask import current_app, g
-import sqlite3
 import click
+from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String
 
 def get_db():
     if "db" not in g:
-        try:
-            g.db = sqlite3.connect(
-                current_app.config["DATABASE"],
-                detect_types=sqlite3.PARSE_DECLTYPES
-            )
-            g.db.row_factory = sqlite3.Row
-        except sqlite3.OperationalError as e:
-            print(current_app.config["DATABASE"])
-            raise e
+        url = f"sqlite:///{current_app.config['DATABASE']}"
+        g.db = create_engine(url)
+        # todo: log db engine created
 
-        
     return g.db
 
 
 def close_db(e=None):
     db = g.pop("db", None)
-    if db is not None:
-        db.close()
+    # todo: log db engine deleted
 
 
 def init_db():
     db = get_db()
-
-    with current_app.open_resource("schema.sql") as f:
-        db.executescript(f.read().decode())
+    metadata_obj = MetaData()
+    headlines_table = Table(
+        "headlines",
+        metadata_obj,
+        Column("id", Integer, autoincrement=True),
+        Column("title", String, nullable=False),
+        Column("link", String),
+        Column("pubDate", String),  # todo: use datetime type for pubDate
+        Column("descriptionText", String),
+        Column("channel", String),  # todo: add channel table and foreign key
+    )
+    metadata_obj.drop_all(db)
+    metadata_obj.create_all(db)
 
 
 @click.command("init-db")
