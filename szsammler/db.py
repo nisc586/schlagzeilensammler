@@ -1,19 +1,24 @@
 from flask import current_app, g
 import click
-from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String
+from sqlalchemy import create_engine, Column, String
 from sqlalchemy import select
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import declarative_base, Session
+from sqlalchemy.orm import mapped_column, Mapped
 
 Base = declarative_base()
 
+
 class Headline(Base):
     __tablename__ = "headlines"
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    title = Column(String, nullable=False)
-    link = Column("link", String)
-    pub_date = Column("pubDate", String)  # todo: use datetime type for pubDate
-    description = Column("descriptionText", String)
-    channel = Column("channel", String)  # todo: add channel table and foreign key
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    title: Mapped[str]= mapped_column(nullable=False)
+    link: Mapped[str] = mapped_column()
+    pub_date: Mapped[str] = mapped_column()  # todo: use datetime type for pubDate
+    description: Mapped[str] = mapped_column()
+    channel: Mapped[str] = mapped_column()  # todo: add channel table and foreign key
+
+    def __repr__(self):
+        return f"Headline(id={self.id}, title={self.title}, pub_date={self.pub_date})"
 
 
 def get_db():
@@ -48,4 +53,7 @@ def init_app(app):
 
 
 def get_headlines():
-    return select(Headline)
+    stmt = select(Headline)
+    with Session(get_db()) as session:
+        result = session.execute(stmt).fetchall()
+    return result

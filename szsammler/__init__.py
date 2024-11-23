@@ -1,5 +1,6 @@
 from flask import Flask, render_template, abort
 from pathlib import Path
+from .db import get_headlines
 
 def create_app():
     app = Flask(__name__, instance_relative_config=True)
@@ -16,12 +17,8 @@ def create_app():
 
     @app.route("/headlines")
     def headlines_api():
-        headlines = [
-            "Trump erneut Präsident!",
-            "Barcelona Kantersieg in der Champions League!",
-            "Programmierer immer noch arbeitslos",
-        ]
-        return headlines
+        return [str(hl) for hl in get_headlines()]
+        # todo: return a json object
 
 
     @app.route("/settings")
