@@ -10,4 +10,4 @@ class Config:
 
 # Different environments can inherit from Config
 class TestConfig(Config):
-    pass
+    SQLALCHEMY_DATABASE_URI = "sqlite:///test.db"
