@@ -10,33 +10,51 @@
     <h1>Willkommen beim Schlagzeilensammler</h1>
     <p>Es gibt aktuell {{ count }} Einträge in der Datenbank.</p>
     <button id="fetch-rss" type="button">Load New Articles</button>
+
+    <!-- News articles go here using the following template-->
     <ul id="articles-list">
-        <!-- News titles go here-->
+        <!-- -->
     </ul>
+    
+    <template id="media-template">
+       <li class="media-item">
+           <h3 class="media-title"></h3>
+           <span class="media-date"></span>
+           <div class="media-content"></div>
+           <a class="media-link" target="_blank">weiterlesen...</a>
+       </li>
+    </template>
+    <!-- -->
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
     <script>
-        const b = document.getElementById("fetch-rss")
-        b.addEventListener("click", function() {
-            fetch("/fetch-articles")
-                .then(response => response.json())
-                .then(data => {
-                    const list = document.getElementById("articles-list")
-                    list.innerHTML = ""; // Clear previous entries
-                    data.articles.forEach(article => {
-                        const li = document.createElement("li");
-                        li.textContent = article.title;
-                        
-                        const a = document.createElement("a");
-                        a.href = article.link;
-                        a.textContent = "lesen"
-                        a.target = "_blank";  // Open in new tab
+        document.addEventListener("DOMContentLoaded", () => {
+            if (typeof DOMPurify !== "undefined") {
+                console.log("DOMPurify ist bereit!");
+            } else {
+                console.error("DOMPurify konnte nicht geladen werden.");
+            }
+        });
 
-                        li.appendChild(a);
-                        list.appendChild(li);
-                    });
-                })
+        const b = document.getElementById("fetch-rss")
+        b.addEventListener("click", async function() {
+            const response = await fetch("/fetch-articles");
+            const data = await response.json();
+
+            const template = document.getElementById("media-template")
+            const list = document.getElementById("articles-list");
+            list.innerHTML = ""; // Clear previous entries
+
+            data["articles"].forEach(article => {
+                let clone = template.content.cloneNode(true);
+                clone.querySelector(".media-title").textContent = article.title;
+                clone.querySelector(".media-date").textContent = article.published;
+                clone.querySelector(".media-content").innerHTML = DOMPurify.sanitize(article.description);
+                clone.querySelector(".media-link").href = article.link;
+                list.appendChild(clone);
+            })
         })
-        .catch(error => console.error("Error fetching articles:", error));
+
     </script>
 </body>
 </html>
