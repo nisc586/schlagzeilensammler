@@ -17,12 +17,15 @@
     </ul>
     
     <template id="media-template">
-       <li class="media-item">
-           <h3 class="media-title"></h3>
-           <span class="media-date"></span>
-           <div class="media-content"></div>
-           <a class="media-link" target="_blank">weiterlesen...</a>
-       </li>
+        <li class="media-item">
+            <img class="media-icon" src="https://www.faz.net/favicon.svg" alt="FAZ-Icon">
+            <h3 class="media-title"></h3>
+            <span class="media-date"></span>
+            <div class="media-content">
+                <!-- -->
+                <a class="media-link" target="_blank">weiterlesen...</a>
+            </div>
+        </li>
     </template>
     <!-- -->
 
@@ -49,7 +52,7 @@
                 let clone = template.content.cloneNode(true);
                 clone.querySelector(".media-title").textContent = article.title;
                 clone.querySelector(".media-date").textContent = article.published;
-                clone.querySelector(".media-content").innerHTML = DOMPurify.sanitize(article.description);
+                clone.querySelector(".media-content").insertAdjacentHTML("afterbegin", DOMPurify.sanitize(article.description));
                 clone.querySelector(".media-link").href = article.link;
                 list.appendChild(clone);
             })
