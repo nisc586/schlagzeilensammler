@@ -18,16 +18,16 @@
     
     <template id="media-template">
         <li class="media-item">
-            <img class="media-icon" src="https://www.faz.net/favicon.svg" alt="FAZ-Icon">
-            <h3 class="media-title"></h3>
-            <span class="media-date"></span>
+            <div class="media-item-header">
+                <img class="media-icon" src="https://www.faz.net/favicon.svg" alt="FAZ-Icon">
+                <span class="media-date"></span>
+                <a class="media-link" ><h3 class="media-title"></h3></a>
+            </div>
             <div class="media-content">
-                <!-- -->
-                <a class="media-link" target="_blank">weiterlesen...</a>
             </div>
         </li>
     </template>
-    <!-- -->
+    <!-- End of news articles list -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
     <script>
