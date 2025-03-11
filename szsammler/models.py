@@ -1,19 +1,21 @@
-from sqlalchemy.orm import mapped_column, Mapped
-from sqlalchemy import Integer, String, DateTime
+from sqlalchemy.orm import mapped_column, Mapped, relationship, backref
+from sqlalchemy import Integer, String, DateTime, ForeignKey
 from szsammler import db
 from datetime import datetime
+from urllib.parse import urlparse
 
 
 class Article(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    title: Mapped[str]= mapped_column(String, nullable=False)
+    title: Mapped[str] = mapped_column(String, nullable=False)
     link: Mapped[str] = mapped_column(String, nullable=False)
     published: Mapped[datetime] = mapped_column(DateTime)
     description: Mapped[str] = mapped_column(String)
-    # channel: Mapped[str] = mapped_column()  # TODO: add channel table and foreign key
+    channel_id: Mapped[int] = mapped_column(Integer, ForeignKey("channel.id"), nullable=False)
+    channel: Mapped["Channel"] = relationship("Channel", backref=backref("articles", lazy=True))
 
     def __repr__(self):
-        return f"Article(id={self.id}, title={self.title}, pub_date={self.pub_date})"
+        return f"Article({self.id=}, {self.title=})"
     
     def to_dict(self):
         return {
@@ -23,3 +25,24 @@ class Article(db.Model):
             "published": self.published.isoformat(),
             "description": self.description,
         }
+
+
+class Channel(db.Model):
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    title: Mapped[str] = mapped_column(String, nullable=False)
+    link: Mapped[str] = mapped_column(String, nullable=False)
+    description: Mapped[str] = mapped_column(String, nullable=False)
+    image_url: Mapped[str] = mapped_column(String, nullable=True)
+
+    def __repr__(self):
+        return f"Channel({self.id=}, {self.title=})"
+    
+    def get_image_url(self):
+        """Use duckduckgo's icon api if the rss channel does not provide an image-url."""
+        if (self.image_url is None):
+            url = urlparse(self.link)
+            domain = str.split(url.netloc, ".", 1)[-1]
+            ddg_url = f"https://icons.duckduckgo.com/ip3/{domain}.ico"
+            return ddg_url
+        else:
+            return self.image_url        

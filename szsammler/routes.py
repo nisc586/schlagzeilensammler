@@ -27,10 +27,12 @@ def fetch_articles():
                 link=entry.link,
                 published=datetime.strptime(entry.published, DT_FMT),
                 description=entry.description,
-                #channel=None  # TODO: Implement newspapers model
+                channel_id=1  # TODO: Implement newspapers model
             )
             db.session.add(new_article)
             new_articles.append(new_article.to_dict())
 
     db.session.commit()
     return jsonify({"articles" :new_articles})
+
+
