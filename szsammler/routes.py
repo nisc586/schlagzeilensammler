@@ -29,8 +29,8 @@ def fetch_articles():
                 description=entry.description,
                 #channel=None  # TODO: Implement newspapers model
             )
-
-        new_articles.append(new_article.to_dict())
+            db.session.add(new_article)
+            new_articles.append(new_article.to_dict())
 
     db.session.commit()
     return jsonify({"articles" :new_articles})
