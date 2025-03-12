@@ -10,6 +10,7 @@
     <h1>Willkommen beim Schlagzeilensammler</h1>
     <p>Es gibt aktuell {{ count }} Einträge in der Datenbank.</p>
     <button id="fetch-rss" type="button">Load New Articles</button>
+    <button id="fetch-db" type="button">Load DB Articles</button>
 
     <!-- News articles go here using the following template-->
     <ol id="articles-list">
@@ -39,14 +40,13 @@
             }
         });
 
-        const b = document.getElementById("fetch-rss")
-        b.addEventListener("click", async function() {
-            const response = await fetch("/fetch-articles/rss");
+        fetchArticles = async function (source) {
+            const response = await fetch(source);
             const data = await response.json();
 
-            const template = document.getElementById("media-template")
+            const template = document.getElementById("media-template");
             const list = document.getElementById("articles-list");
-
+            
             data["articles"].forEach(article => {
                 let clone = template.content.cloneNode(true);
                 clone.querySelector(".media-title").textContent = article.title;
@@ -55,6 +55,16 @@
                 clone.querySelector(".media-link").href = article.link;
                 list.appendChild(clone);
             })
+        }
+
+        const b = document.getElementById("fetch-rss")
+        b.addEventListener("click", async function() {
+            fetchArticles("/fetch-articles/rss");
+        })
+
+        const b2 = document.getElementById("fetch-db")
+        b2.addEventListener("click", async function() {
+            fetchArticles("/fetch-articles/db");
         })
 
     </script>

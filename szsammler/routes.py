@@ -12,7 +12,7 @@ def index():
     return render_template("index.html", count=count)
 
 @main.route("/fetch-articles/rss", methods=["GET"])
-def fetch_articles():
+def get_articles_from_rss():
     RSS_URL = "https://www.faz.net/rss/aktuell/"  # TODO: Use different newspapers
     DT_FMT = "%a, %d %b %Y %H:%M:%S %z"
 
@@ -36,3 +36,7 @@ def fetch_articles():
     return jsonify({"articles" :new_articles})
 
 
+@main.route("/fetch-articles/db", methods=["GET"])
+def get_articles_from_db():
+    articles = [article.to_dict() for article in Article.query.all()]
+    return jsonify({"articles": articles})
