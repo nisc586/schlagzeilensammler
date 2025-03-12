@@ -12,3 +12,11 @@ flask run --debug
     - ~~use `https://icons.duckduckgo.com/ip3/{domain}.ico` to load icons~~
     - research some end-points
     - update front-end
+- Alter date format for `media-date`
+- Add a page where you can add your own feeds
+    - end point for post requests
+    - add front-end
+    - add navbar to index
+- Add testing
+    - test config
+    - test database

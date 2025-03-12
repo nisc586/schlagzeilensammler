@@ -12,9 +12,9 @@
     <button id="fetch-rss" type="button">Load New Articles</button>
 
     <!-- News articles go here using the following template-->
-    <ul id="articles-list">
+    <ol id="articles-list">
         <!-- -->
-    </ul>
+    </ol>
     
     <template id="media-template">
         <li class="media-item">
@@ -41,12 +41,11 @@
 
         const b = document.getElementById("fetch-rss")
         b.addEventListener("click", async function() {
-            const response = await fetch("/fetch-articles");
+            const response = await fetch("/fetch-articles/rss");
             const data = await response.json();
 
             const template = document.getElementById("media-template")
             const list = document.getElementById("articles-list");
-            list.innerHTML = ""; // Clear previous entries
 
             data["articles"].forEach(article => {
                 let clone = template.content.cloneNode(true);

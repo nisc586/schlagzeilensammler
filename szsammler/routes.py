@@ -11,7 +11,7 @@ def index():
     count = Article.query.count()
     return render_template("index.html", count=count)
 
-@main.route("/fetch-articles", methods=["GET"])
+@main.route("/fetch-articles/rss", methods=["GET"])
 def fetch_articles():
     RSS_URL = "https://www.faz.net/rss/aktuell/"  # TODO: Use different newspapers
     DT_FMT = "%a, %d %b %Y %H:%M:%S %z"
