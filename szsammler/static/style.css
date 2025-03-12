@@ -7,6 +7,8 @@ body {
 }
 
 #articles-list {
+    display: flex;
+    flex-direction: column-reverse;  /* Show last (newest) articles first */
     list-style-type: none;
     padding-inline-start: 0px;
 }
@@ -35,6 +37,15 @@ body {
     border-radius: 8px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     background-color: #fff;
+}
+
+@keyframes flash {
+    0% {background-color: yellow; }
+    100% {background-color: transparent;}
+}
+
+.flash {
+    animation: flash 1s ease-out;
 }
 
 @media (max-width: 500px) {

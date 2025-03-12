@@ -40,31 +40,53 @@
             }
         });
 
-        fetchArticles = async function (source) {
+         async function fetchArticles(source) {
             const response = await fetch(source);
             const data = await response.json();
+            return(data["articles"]);
+        }
 
+        function getNewMediaItem(article) {
             const template = document.getElementById("media-template");
-            const list = document.getElementById("articles-list");
-            
-            data["articles"].forEach(article => {
-                let clone = template.content.cloneNode(true);
-                clone.querySelector(".media-title").textContent = article.title;
-                clone.querySelector(".media-date").textContent = article.published;
-                clone.querySelector(".media-content").insertAdjacentHTML("afterbegin", DOMPurify.sanitize(article.description));
-                clone.querySelector(".media-link").href = article.link;
-                list.appendChild(clone);
-            })
+            let clone = template.content.cloneNode(true);
+            clone.querySelector(".media-title").textContent = article.title;
+            clone.querySelector(".media-date").textContent = article.published;
+            clone.querySelector(".media-content").insertAdjacentHTML("afterbegin", DOMPurify.sanitize(article.description));
+            clone.querySelector(".media-link").href = article.link;
+            return(clone);
         }
 
         const b = document.getElementById("fetch-rss")
         b.addEventListener("click", async function() {
-            fetchArticles("/fetch-articles/rss");
+            
+            const list = document.getElementById("articles-list");
+            
+            // Add articles to list
+            let new_articles = await fetchArticles("/fetch-articles/rss")
+            new_articles.forEach(article => {
+                newItem = getNewMediaItem(article);
+                // Flash
+                let newMediaItem = newItem.firstElementChild;
+                newMediaItem.classList.add("flash");
+                list.appendChild(newItem);
+                setTimeout(() => {
+                    newMediaItem.classList.remove("flash");
+                }, 5000);
+            })
         })
 
         const b2 = document.getElementById("fetch-db")
         b2.addEventListener("click", async function() {
-            fetchArticles("/fetch-articles/db");
+            const list = document.getElementById("articles-list");
+            // Clear previous articles
+            list.innerHTML = "";
+
+            // Add articles to list
+            let new_articles = await fetchArticles("/fetch-articles/db");
+            new_articles.forEach(article => {
+                let newItem = getNewMediaItem(article);
+                list.appendChild(newItem);
+            })
         })
 
     </script>
