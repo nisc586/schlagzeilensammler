@@ -1,6 +1,6 @@
-from flask import Blueprint, render_template, jsonify
+from flask import Blueprint, render_template, jsonify, request
 from . import db
-from .models import Article
+from .models import Article, Channel
 import feedparser
 from datetime import datetime
 
@@ -40,3 +40,32 @@ def get_articles_from_rss():
 def get_articles_from_db():
     articles = [article.to_dict() for article in Article.query.all()]
     return jsonify({"articles": articles})
+
+
+@main.route("/channel/new", methods=["POST"])
+def create_new_channel():
+    data = request.get_json()
+    rss_url = data.get("rss_url")
+
+    if not rss_url:
+        return jsonify({"error": "RSS Url is required."}), 400
+    
+    try:
+        rss = feedparser.parse(rss_url)
+        feed = rss.feed
+    except:
+        import requests as r
+        r.request("GET", rss_url)
+        print(r)
+        return jsonify({"error": "Invalid RSS feed"}), 400
+    
+
+    if not Channel.query.filter_by(link=feed.link).first():
+        new_channel = Channel(
+            title = feed.title,
+            link = feed.link,
+            description = feed.description,
+            image_url = feed.image.link,
+        )
+        
+    return jsonify({"channel": new_channel.to_dict()})

@@ -11,7 +11,7 @@
     <p>Es gibt aktuell {{ count }} Einträge in der Datenbank.</p>
     <button id="fetch-rss" type="button">Load New Articles</button>
     <button id="fetch-db" type="button">Load DB Articles</button>
-
+    <button id="add-channel" type="button">Add new channel</button>
     <!-- News articles go here using the following template-->
     <ol id="articles-list">
         <!-- -->
@@ -89,6 +89,21 @@
             })
         })
 
+        const b3 = document.getElementById("add-channel")
+        b3.addEventListener("click", async function() {
+            result = fetch("/channel/new", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ rss_url: "https://rss.sueddeutsche.de/alles" })
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error("Error:", error));
+
+           console.log(result);
+        })
     </script>
 </body>
 </html>

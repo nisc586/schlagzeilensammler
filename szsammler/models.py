@@ -45,4 +45,14 @@ class Channel(db.Model):
             ddg_url = f"https://icons.duckduckgo.com/ip3/{domain}.ico"
             return ddg_url
         else:
-            return self.image_url        
+            return self.image_url
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "link": self.link,
+            "description": self.description,
+            "image_url": self.get_image_url(),
+        }
+    
