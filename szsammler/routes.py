@@ -1,3 +1,4 @@
+from json import JSONDecodeError
 from flask import Blueprint, render_template, jsonify, request
 from . import db
 from .models import Article, Channel
@@ -44,28 +45,29 @@ def get_articles_from_db():
 
 @main.route("/channel/new", methods=["POST"])
 def create_new_channel():
-    data = request.get_json()
-    rss_url = data.get("rss_url")
-
-    if not rss_url:
-        return jsonify({"error": "RSS Url is required."}), 400
+    if not request.data:
+        return jsonify({"error": "Missing payload, 'rss_url' is required."}), 400
     
-    try:
-        rss = feedparser.parse(rss_url)
-        feed = rss.feed
-    except:
-        import requests as r
-        r.request("GET", rss_url)
-        print(r)
-        return jsonify({"error": "Invalid RSS feed"}), 400
+    rss_url = request.get_json().get("rss_url")
+    rss = feedparser.parse(rss_url)
+    if rss.bozo:
+        return jsonify({"error": f"Invalid RSS feed at: {rss_url}"}), 400
     
-
+    feed = rss.feed
+    # feed.link does not necessarily link to the rss-channel.
+    # In the xml it typically is the atom:link, that points to the rss-URL.
+    # The parsed feed does not distinguish between namespaces as far as I know
+    for link in feed.links:
+        if (link["type"] == "application/rss+xml"):
+            channel_link = link["href"]
+            break
+    
     if not Channel.query.filter_by(link=feed.link).first():
         new_channel = Channel(
             title = feed.title,
-            link = feed.link,
+            link = channel_link,
             description = feed.description,
-            image_url = feed.image.link,
+            image_url = feed.image.url,
         )
         
     return jsonify({"channel": new_channel.to_dict()})
