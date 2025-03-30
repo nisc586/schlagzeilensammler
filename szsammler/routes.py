@@ -42,30 +42,42 @@ def get_articles_from_db():
     return jsonify({"articles": articles})
 
 
-@main.route("/channel/new", methods=["POST"])
+@main.route("/channel/new", methods=["GET", "POST"])
 def create_new_channel():
-    data = request.get_json()
-    rss_url = data.get("rss_url")
+    if request.method == "POST":
+        if request.content_type == "application/json":
+            rss_url = request.get_json().get("rss_url")
+        else:
+            # default for forms application/x-www-form-urlencoded
+            rss_url = request.form["rss_url"]
 
-    if not rss_url:
-        return jsonify({"error": "RSS Url is required."}), 400
-    
-    try:
-        rss = feedparser.parse(rss_url)
-        feed = rss.feed
-    except:
-        import requests as r
-        r.request("GET", rss_url)
-        print(r)
-        return jsonify({"error": "Invalid RSS feed"}), 400
-    
-
-    if not Channel.query.filter_by(link=feed.link).first():
-        new_channel = Channel(
-            title = feed.title,
-            link = feed.link,
-            description = feed.description,
-            image_url = feed.image.link,
-        )
+        if not rss_url:
+            return jsonify({"error": "RSS Url is required."}), 400
         
-    return jsonify({"channel": new_channel.to_dict()})
+        try:
+            rss = feedparser.parse(rss_url)
+            feed = rss.feed
+        except:
+            import requests as r
+            r.request("GET", rss_url)
+            print(r)
+            return jsonify({"error": "Invalid RSS feed"}), 400
+        
+
+        if not Channel.query.filter_by(link=feed.link).first():
+            new_channel = Channel(
+                title = feed.title,
+                link = feed.link,
+                description = feed.description,
+                image_url = feed.image.link,
+            )
+        
+        return jsonify({"channel": new_channel.to_dict()})
+    else:
+        # GET request
+        return render_template("channel_new.html")
+
+
+@main.route("/success")
+def success():
+    return "Erfolgreich Channel hinzugefügt!"
