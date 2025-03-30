@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"
+    xmlns:dcterms="http://purl.org/dc/terms/">
+    <channel>
+        <title><![CDATA[Alle Meldungen - SZ.de]]></title>
+        <description><![CDATA[sz.de]]></description>
+        <link>https://www.sueddeutsche.de</link>
+        <image>
+            <url>https://www.sueddeutsche.de/assets/img/favicon.ico</url>
+            <title>Alle Meldungen - SZ.de</title>
+            <link>https://www.sueddeutsche.de</link>
+        </image>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Sun, 09 Mar 2025 19:58:27 GMT</lastBuildDate>
+        <atom:link href="https://rss.sueddeutsche.de/alles" rel="self" type="application/rss+xml"/>
+        <copyright><![CDATA[Süddeutsche Zeitung Digitale Medien GmbH – 2025]]></copyright>
+        <language><![CDATA[de]]></language>
+        <managingEditor><![CDATA[kontakt@sueddeutsche.de (Süddeutsche Zeitung Digitale Medien GmbH)]]></managingEditor>
+        <item>
+            <title><![CDATA[Basketball: Kleine Rotation im doppelten Sinne]]></title>
+            <description><![CDATA[<img src="https://www.sueddeutsche.de/2025/03/09/ae3a6c71-caac-412d-b966-fb9f24cb0af7.jpeg?rect=0%2C0%2C3603%2C2702&width=1000&fm=jpg&q=60" data-portal-copyright="Marcel Engelbrecht/Eibner/Imago" /><p>Für die Bayern-Basketballer stehen die Playoffs in der Euroleague an – für Trainer Gordon Herbert macht das keinen großen Unterschied: Er lässt ja immer so spielen, als seien Playoffs. Und auch der Ausfall zweier wichtiger großer Spieler beunruhigt ihn nicht übermäßig.</p>]]></description>
+            <link>https://www.sueddeutsche.de/sport/fc-bayern-basketball-heidelberg-gordon-herbert-news-li.3216215</link>
+            <guid isPermaLink="false">li.3216215</guid>
+            <category><![CDATA[Sport in Bayern]]></category>
+            <category><![CDATA[FC Bayern Basketball]]></category>
+            <category><![CDATA[BBL]]></category>
+            <category><![CDATA[Basketball]]></category>
+            <dc:creator><![CDATA[Von David Kirchner]]></dc:creator>
+            <pubDate>Sun, 09 Mar 2025 19:57:42 GMT</pubDate>
+            <dcterms:abstract>Für die Bayern-Basketballer stehen die Playoffs in der Euroleague an – für Trainer Gordon Herbert macht das keinen großen Unterschied: Er lässt ja immer so spielen, als seien Playoffs. Und auch der Ausfall zweier wichtiger großer Spieler beunruhigt ihn nicht übermäßig.</dcterms:abstract>
+            <dc:publisher>SZ</dc:publisher>
+        </item>
+        <item>
+            <title><![CDATA[Reiseverkehr: Großstreik an deutschen Flughäfen]]></title>
+            <description><![CDATA[<img src="https://www.sueddeutsche.de/2025/03/09/7a1d99b7-7902-4d4d-bcfb-324ef9648d25.jpeg?rect=212%2C0%2C2576%2C1932&width=1000&fm=jpg&q=60" data-portal-copyright="Andreas Arnold/dpa" /><p>Verdi will mit einem 24-stündigen Arbeitskampf Deutschlands große Flughäfen lahmlegen: In Hamburg führte am Sonntag ein unangekündigter Streik zu Chaos.</p>]]></description>
+            <link>https://www.sueddeutsche.de/wirtschaft/flughaefen-streik-flugverkehr-montag-li.3216231</link>
+            <guid isPermaLink="false">li.3216231</guid>
+            <category><![CDATA[Flugreise]]></category>
+            <category><![CDATA[Streik]]></category>
+            <category><![CDATA[Verdi]]></category>
+            <category><![CDATA[Öffentlicher Dienst]]></category>
+            <pubDate>Sun, 09 Mar 2025 19:10:01 GMT</pubDate>
+            <dcterms:abstract>Verdi will mit einem 24-stündigen Arbeitskampf Deutschlands große Flughäfen lahmlegen: In Hamburg führte am Sonntag ein unangekündigter Streik zu Chaos.</dcterms:abstract>
+            <dc:publisher>SZ/lala</dc:publisher>
+        </item>
+        <item>
+            <title><![CDATA[SZ am Abend: Nachrichten vom 09. Februar 2025]]></title>
+            <description><![CDATA[<img src="https://www.sueddeutsche.de/2025/03/08/cfe3c400-168c-4a35-9c87-2f1be3abd325.jpeg?rect=167%2C0%2C2667%2C2000&width=1000&fm=jpg&q=60" data-portal-copyright="Michael Kappeler/dpa" /><p>Was heute wichtig war.</p>]]></description>
+            <link>https://www.sueddeutsche.de/politik/news-sondierungen-union-spd-syrien-gewalt-bahn-verspaetungen-entschaedigungen-li.3216220</link>
+            <guid isPermaLink="false">li.3216220</guid>
+            <category><![CDATA[SZ Nachrichten des Tages]]></category>
+            <dc:creator><![CDATA[Von Katja Guttmann]]></dc:creator>
+            <pubDate>Sun, 09 Mar 2025 18:01:20 GMT</pubDate>
+            <dcterms:abstract>Was heute wichtig war.</dcterms:abstract>
+            <dc:publisher>SZ</dc:publisher>
+        </item>
+        <item>
+            <title><![CDATA[USA: US-Regierung setzt Lügendetektoren gegen eigene Mitarbeiter ein]]></title>
+            <description><![CDATA[<img src="https://www.sueddeutsche.de/2025/03/09/49fb597b-8e07-455d-b44d-aba4b483c95d.jpeg?rect=163%2C0%2C2673%2C2005&width=1000&fm=jpg&q=60" data-portal-copyright="Manuel Balce Ceneta/dpa" /><p>US-Heimatschutzministerin Kristi Noem setzt bei der Suche nach internen Informationslecks Lügendetektoren ein. Unterdessen kündigte Trump an, mit Teheran über Irans  Nuklearprogramm verhandeln zu wollen.</p>]]></description>
+            <link>https://www.sueddeutsche.de/politik/trump-heimatschutzministerium-luegendetektor-li.3212407</link>
+            <guid isPermaLink="false">li.3212407</guid>
+            <category><![CDATA[USA]]></category>
+            <category><![CDATA[US-Wahl]]></category>
+            <category><![CDATA[Donald Trump]]></category>
+            <category><![CDATA[US-Präsident]]></category>
+            <category><![CDATA[Demokratische Partei]]></category>
+            <category><![CDATA[Republikanische Partei]]></category>
+            <dc:creator><![CDATA[Alle Entwicklungen im Liveblog]]></dc:creator>
+            <pubDate>Sun, 09 Mar 2025 17:26:00 GMT</pubDate>
+            <dcterms:abstract>US-Heimatschutzministerin Kristi Noem setzt bei der Suche nach internen Informationslecks Lügendetektoren ein. Unterdessen kündigte Trump an, mit Teheran über Irans  Nuklearprogramm verhandeln zu wollen.</dcterms:abstract>
+            <dc:publisher>SZ/dpa/epd/KNA/Reuters/Bloomberg</dc:publisher>
+        </item>
+        <item>
+            <title><![CDATA[Hängende Spitze: Schnauz und Schnäuzer]]></title>
+            <description><![CDATA[<img src="https://www.sueddeutsche.de/2025/03/09/b0775752-1157-4d71-a499-29ea60eb00cb.jpeg?rect=0%2C0%2C2667%2C2000&width=1000&fm=jpg&q=60" data-portal-copyright="Harry Langer/dpa" /><p>Rasieren oder sprießen lassen: Borussia Mönchengladbach verkrampft über der Frage, ob es sich trefflicher mit oder ohne Oberlippenbehaarung spielt.</p>]]></description>
+            <link>https://www.sueddeutsche.de/sport/gladbach-schnauz-schnaeuzer-hysterie-li.3216014</link>
+            <guid isPermaLink="false">li.3216014</guid>
+            <category><![CDATA[Bundesliga]]></category>
+            <category><![CDATA[Borussia Mönchengladbach]]></category>
+            <dc:creator><![CDATA[Glosse von Ulrich Hartmann]]></dc:creator>
+            <pubDate>Sun, 09 Mar 2025 16:59:34 GMT</pubDate>
+            <dcterms:abstract>Rasieren oder sprießen lassen: Borussia Mönchengladbach verkrampft über der Frage, ob es sich trefflicher mit oder ohne Oberlippenbehaarung spielt.</dcterms:abstract>
+            <dc:publisher>SZ</dc:publisher>
+        </item>
+        <item>
+            <title><![CDATA[SpVgg Unterhaching: Visionär auf einem sinkenden Schiff]]></title>
+            <description><![CDATA[<img src="https://www.sueddeutsche.de/2025/03/09/393c07d4-0491-4718-b505-9b1bc4e1b2ab.jpeg?rect=0%2C36%2C2250%2C1688&width=1000&fm=jpg&q=60" data-portal-copyright="Oryk Haist/Imago" /><p>Bevorstehender Abstieg, Spielabsage wegen Sicherheitsbedenken, große finanzielle Sorgen: Die SpVgg Unterhaching erlebt aufregende Zeiten. Präsident Schwabl kämpft um die Zukunft des Vorstadtklubs.</p>]]></description>
+            <link>https://www.sueddeutsche.de/sport/spvgg-unterhaching-manfred-schwabl-3-liga-li.3215987</link>
+            <guid isPermaLink="false">li.3215987</guid>
+            <category><![CDATA[Sport in Bayern]]></category>
+            <category><![CDATA[SpVgg Unterhaching]]></category>
+            <category><![CDATA[3. Liga]]></category>
+            <dc:creator><![CDATA[Von Christoph Leischwitz]]></dc:creator>
+            <pubDate>Sun, 09 Mar 2025 16:48:34 GMT</pubDate>
+            <dcterms:abstract>Bevorstehender Abstieg, Spielabsage wegen Sicherheitsbedenken, große finanzielle Sorgen: Die SpVgg Unterhaching erlebt aufregende Zeiten. Präsident Schwabl kämpft um die Zukunft des Vorstadtklubs.</dcterms:abstract>
+            <dc:publisher>SZ</dc:publisher>
+        </item>
+        <item>
+            <title><![CDATA[Bundesliga: Frankfurt verliert überraschend zu Hause]]></title>
+            <description><![CDATA[<img src="https://www.sueddeutsche.de/2025/03/09/d863e466-45c5-483d-a6c1-e14099ac2859.jpeg?rect=196%2C0%2C2419%2C1814&width=1000&fm=jpg&q=60" data-portal-copyright="Arne Dedert/dpa" /><p>Die Eintracht unterliegt Union Berlin – und verschießt dabei in der fünften Minute der Nachspielzeit noch einen Elfmeter.</p>]]></description>
+            <link>https://www.sueddeutsche.de/sport/bundesliga-frankfurt-union-ergebnisse-tore-elfmeter-li.3216196</link>
+            <guid isPermaLink="false">li.3216196</guid>
+            <category><![CDATA[Bundesliga]]></category>
+            <category><![CDATA[Eintracht Frankfurt]]></category>
+            <pubDate>Sun, 09 Mar 2025 16:39:17 GMT</pubDate>
+            <dcterms:abstract>Die Eintracht unterliegt Union Berlin – und verschießt dabei in der fünften Minute der Nachspielzeit noch einen Elfmeter.</dcterms:abstract>
+            <dc:publisher>SZ</dc:publisher>
+        </item>
+        <item>
+            <title><![CDATA[Feuerwehr: Brandstellen am Gleis: Bahnstrecke zwischen München und Ingolstadt gesperrt]]></title>
+            <description><![CDATA[<img src="https://www.sueddeutsche.de/2025/03/09/e5869cff-a33a-43b6-b166-5ee06d06345a.jpeg?rect=302%2C0%2C2396%2C1797&width=1000&fm=jpg&q=60" data-portal-copyright="Schmelzer/dpa" /><p>Ein Güterzug schlägt Funken und löst mehrere Brände aus. Rund 150 Feuerwehrleute sind im Einsatz, ehe die Bahn wieder fahren kann.</p>]]></description>
+            <link>https://www.sueddeutsche.de/bayern/zug-muenchen-ingolstadt-strecke-gesperrt-brand-li.3216203</link>
+            <guid isPermaLink="false">li.3216203</guid>
+            <category><![CDATA[Polizei und Feuerwehr in Bayern]]></category>
+            <category><![CDATA[Deutsche Bahn]]></category>
+            <category><![CDATA[Oberbayern]]></category>
+            <category><![CDATA[Ingolstadt]]></category>
+            <category><![CDATA[Pfaffenhofen an der Ilm]]></category>
+            <pubDate>Sun, 09 Mar 2025 16:32:55 GMT</pubDate>
+            <dcterms:abstract>Ein Güterzug schlägt Funken und löst mehrere Brände aus. Rund 150 Feuerwehrleute sind im Einsatz, ehe die Bahn wieder fahren kann.</dcterms:abstract>
+            <dc:publisher>SZ/dpa</dc:publisher>
+        </item>
+        <item>
+            <title><![CDATA[Biathlon: Deutsche Staffel nach vier Strafrunden auf Rang vier]]></title>
+            <link>https://www.sueddeutsche.de/sport/biathlon-staffel-novo-mesto-li.3216202</link>
+            <guid isPermaLink="false">li.3216202</guid>
+            <category><![CDATA[Biathlon]]></category>
+            <pubDate>Sun, 09 Mar 2025 16:32:09 GMT</pubDate>
+            <dc:publisher>SZ/dpa</dc:publisher>
+        </item>
+        <item>
+            <title><![CDATA[Krieg in der Ukraine: Trump: Vielleicht überlebt die Ukraine ohnehin nicht]]></title>
+            <description><![CDATA[<img src="https://www.sueddeutsche.de/2025/03/09/f5abffd0-1700-4a68-9765-9cf3e9722a32.jpeg?rect=194%2C0%2C2667%2C2000&width=1000&fm=jpg&q=60" data-portal-copyright="Alex Brandon/dpa" /><p>Der US-Präsident stellt in einem Interview die Existenz der Ukraine infrage. Der ukrainische Präsident Selenskij setzt auf einen konstruktiven Dialog in Riad.</p>]]></description>
+            <link>https://www.sueddeutsche.de/politik/ukraine-news-liveblog-usa-trump-li.3212397</link>
+            <guid isPermaLink="false">li.3212397</guid>
+            <category><![CDATA[Ukraine]]></category>
+            <category><![CDATA[Krieg in der Ukraine]]></category>
+            <category><![CDATA[Hilfe für die Ukraine]]></category>
+            <category><![CDATA[Politik Russland]]></category>
+            <category><![CDATA[Sicherheitspolitik]]></category>
+            <category><![CDATA[Waffenlieferungen]]></category>
+            <category><![CDATA[Wladimir Putin]]></category>
+            <category><![CDATA[Wolodimir Selenskij]]></category>
+            <category><![CDATA[Donald Trump]]></category>
+            <dc:creator><![CDATA[Alle Entwicklungen im Liveblog]]></dc:creator>
+            <pubDate>Sun, 09 Mar 2025 16:25:00 GMT</pubDate>
+            <dcterms:abstract>Der US-Präsident stellt in einem Interview die Existenz der Ukraine infrage. Der ukrainische Präsident Selenskij setzt auf einen konstruktiven Dialog in Riad.</dcterms:abstract>
+            <dc:publisher>SZ/dpa/rtr/epd/KNA/Bloomberg</dc:publisher>
+        </item>
+        <item>
+            <title><![CDATA[Fußball: Lewis Holtby verlässt Kiel im Sommer]]></title>
+            <link>https://www.sueddeutsche.de/sport/holstein-kiel-lewis-holtby-abschied-li.3216201</link>
+            <guid isPermaLink="false">li.3216201</guid>
+            <category><![CDATA[Fußball]]></category>
+            <category><![CDATA[Bundesliga]]></category>
+            <category><![CDATA[Holstein Kiel]]></category>
+            <pubDate>Sun, 09 Mar 2025 16:24:40 GMT</pubDate>
+            <dc:publisher>SZ/dpa</dc:publisher>
+        </item>
+        <item>
+            <title><![CDATA[TSV 1860 München: Endlich wieder ein Heimsieg]]></title>
+            <description><![CDATA[<img src="https://www.sueddeutsche.de/2025/03/09/720f63bf-0556-469a-b206-5cf3a345380e.jpeg?rect=222%2C0%2C3556%2C2667&width=1000&fm=jpg&q=60" data-portal-copyright="Heike Feiner/Eibner/Imago" /><p>Die Löwen zittern sich mit einem 1:0 über Borussia Dortmund II ein Stück die Tabelle hinauf – und hinterlassen den Eindruck, dass sie nicht mehr zwangsläufig etwas mit dem Abstiegskampf zu tun haben müssen.</p>]]></description>
+            <link>https://www.sueddeutsche.de/sport/tsv-1860-muenchen-borussia-dortmund-ii-gloeckner-danhof-news-li.3216179</link>
+            <guid isPermaLink="false">li.3216179</guid>
+            <category><![CDATA[TSV 1860 München]]></category>
+            <category><![CDATA[Sport in Bayern]]></category>
+            <category><![CDATA[Fußball]]></category>
+            <category><![CDATA[3. Liga]]></category>
+            <dc:creator><![CDATA[Von Christoph Leischwitz]]></dc:creator>
+            <pubDate>Sun, 09 Mar 2025 16:23:21 GMT</pubDate>
+            <dcterms:abstract>Die Löwen zittern sich mit einem 1:0 über Borussia Dortmund II ein Stück die Tabelle hinauf – und hinterlassen den Eindruck, dass sie nicht mehr zwangsläufig etwas mit dem Abstiegskampf zu tun haben müssen.</dcterms:abstract>
+            <dc:publisher>SZ</dc:publisher>
+        </item>
+        <item>
+            <title><![CDATA[Ski alpin: Dominik Paris stiehlt Odermatt die Show]]></title>
+            <link>https://www.sueddeutsche.de/sport/ski-alpin-kvitfjell-dominik-paris-marco-odermatt-li.3216195</link>
+            <guid isPermaLink="false">li.3216195</guid>
+            <category><![CDATA[Ski Alpin]]></category>
+            <pubDate>Sun, 09 Mar 2025 16:18:17 GMT</pubDate>
+            <dc:publisher>SZ/sid</dc:publisher>
+        </item>
+        <item>
+            <title><![CDATA[Florian Wirtz: Bedenklich knappe Informationen]]></title>
+            <description><![CDATA[<img src="https://www.sueddeutsche.de/2025/03/09/f849ae39-dc59-4744-93db-50cd7eb742e5.jpeg?rect=0%2C108%2C4000%2C3000&width=1000&fm=jpg&q=60" data-portal-copyright="Ina Fassbender/AFP" /><p>Wie schwer verletzt ist Florian Wirtz? Nach dem 0:2 gegen Bremen verweigert Bayer Leverkusen die Aussage – schlimmste Befürchtungen bestätigen sich aber wohl nicht.</p>]]></description>
+            <link>https://www.sueddeutsche.de/sport/bayer-leverkusen-florian-wirtz-verletzung-bayern-li.3216012</link>
+            <guid isPermaLink="false">li.3216012</guid>
+            <category><![CDATA[Bundesliga]]></category>
+            <category><![CDATA[Bayer 04 Leverkusen]]></category>
+            <dc:creator><![CDATA[Von Philipp Selldorf, Leverkusen]]></dc:creator>
+            <pubDate>Sun, 09 Mar 2025 16:11:18 GMT</pubDate>
+            <dcterms:abstract>Wie schwer verletzt ist Florian Wirtz? Nach dem 0:2 gegen Bremen verweigert Bayer Leverkusen die Aussage – schlimmste Befürchtungen bestätigen sich aber wohl nicht.</dcterms:abstract>
+            <dc:publisher>SZ</dc:publisher>
+        </item>
+        <item>
+            <title><![CDATA[Ski alpin: Lena Dürr verpasst Podestplatz]]></title>
+            <link>https://www.sueddeutsche.de/sport/ski-alpin-lena-duerr-verpasst-podestplatz-li.3216193</link>
+            <guid isPermaLink="false">li.3216193</guid>
+            <category><![CDATA[Ski Alpin]]></category>
+            <category><![CDATA[Mikaela Shiffrin]]></category>
+            <pubDate>Sun, 09 Mar 2025 16:10:46 GMT</pubDate>
+            <dc:publisher>SZ/sid</dc:publisher>
+        </item>
+    </channel>
+</rss>
