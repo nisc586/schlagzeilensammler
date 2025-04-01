@@ -11,7 +11,7 @@
     <p>Es gibt aktuell {{ count }} Einträge in der Datenbank.</p>
     <button id="fetch-rss" type="button">Aktualisieren</button>
     <button id="fetch-db" type="button">Datenbank laden</button>
-    <button id="add-channel" type="button">Neuen Channel hinzufügen</button>
+    <a id="add-channel" href="/channels/new" >Neuen Channel hinzufügen</a>
     <!-- News articles go here using the following template-->
     <ol id="articles-list">
         <!-- -->
@@ -88,10 +88,10 @@
                 list.appendChild(newItem);
             })
         })
-
+/*
         const b3 = document.getElementById("add-channel")
         b3.addEventListener("click", async function() {
-            result = fetch("/channel/new", {
+            result = fetch("/channels/new", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -104,6 +104,7 @@
 
            console.log(result);
         })
+*/
     </script>
 </body>
 </html>

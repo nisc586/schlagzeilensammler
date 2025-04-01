@@ -1,5 +1,5 @@
 from json import JSONDecodeError
-from flask import Blueprint, render_template, jsonify, request
+from flask import Blueprint, render_template, jsonify, request, redirect, url_for
 from . import db
 from .models import Article, Channel
 import feedparser
@@ -43,7 +43,7 @@ def get_articles_from_db():
     return jsonify({"articles": articles})
 
 
-@main.route("/channel/new", methods=["GET", "POST"])
+@main.route("/channels/new", methods=["GET", "POST"])
 def create_new_channel():
     if request.method == "POST":
         if request.content_type == "application/json":
@@ -77,13 +77,15 @@ def create_new_channel():
                 description = feed.description,
                 image_url = feed.image.url,
             )
+            # TODO: add channel to the database
         
-        return jsonify({"channel": new_channel.to_dict()})
+        # TODO: redirect to channels page
+        return redirect(url_for('main.channels'))
     else:
         # GET request
-        return render_template("channel_new.html")
+        return render_template("channels_new.html")
 
 
-@main.route("/success")
-def success():
-    return "Erfolgreich Channel hinzugefügt!"
+@main.route("/channels")
+def channels():
+    return render_template("channels.html")
