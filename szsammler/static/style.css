@@ -6,6 +6,20 @@ body {
     margin: 2%;
 }
 
+#channels-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    list-style-type: none;
+    padding-inline-start: 0px;
+}
+
+.channels-item {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
 #articles-list {
     display: flex;
     flex-direction: column-reverse;  /* Show last (newest) articles first */
