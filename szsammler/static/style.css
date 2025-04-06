@@ -22,7 +22,7 @@ body {
 
 #articles-list {
     display: flex;
-    flex-direction: column-reverse;  /* Show last (newest) articles first */
+    flex-direction: column;
     list-style-type: none;
     padding-inline-start: 0px;
 }
@@ -42,6 +42,7 @@ body {
 .media-link {
     text-decoration: none;
 }
+
 .media-link:hover {
     text-decoration: underline;
 }

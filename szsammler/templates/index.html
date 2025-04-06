@@ -10,7 +10,6 @@
     <h1>Willkommen beim Schlagzeilensammler</h1>
     <p>Es gibt aktuell {{ count }} Einträge in der Datenbank.</p>
     <button id="fetch-rss" type="button">Aktualisieren</button>
-    <button id="fetch-db" type="button">Datenbank laden</button>
     <a id="add-channel" href="/channels/new" >Neuen Channel hinzufügen</a>
     <!-- News articles go here using the following template-->
     <ol id="articles-list">
@@ -30,6 +29,8 @@
     </template>
     <!-- End of news articles list -->
 
+    <div id="loader" style="text-align: center; padding: 20px;">Lade mehr Artikel...</div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -38,6 +39,7 @@
             } else {
                 console.error("DOMPurify konnte nicht geladen werden.");
             }
+            loadArticles();
         });
 
          async function fetchArticles(source) {
@@ -75,36 +77,46 @@
             })
         })
 
-        const b2 = document.getElementById("fetch-db")
-        b2.addEventListener("click", async function() {
-            const list = document.getElementById("articles-list");
-            // Clear previous articles
-            list.innerHTML = "";
+        let currentPage = 1;
+        let loading = false;
+        let hasMore = true;
 
-            // Add articles to list
-            let new_articles = await fetchArticles("/fetch-articles/db");
-            new_articles.forEach(article => {
-                let newItem = getNewMediaItem(article);
-                list.appendChild(newItem);
-            })
-        })
-/*
-        const b3 = document.getElementById("add-channel")
-        b3.addEventListener("click", async function() {
-            result = fetch("/channels/new", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ rss_url: "https://rss.sueddeutsche.de/alles" })
-            })
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error("Error:", error));
+        const list = document.getElementById("articles-list");
+        const loader = document.getElementById("loader");
 
-           console.log(result);
+        async function loadArticles() {
+            if (loading || !hasMore) return;
+
+            loading = true;
+
+            try {
+                const res = await fetch(`/fetch-articles/db?page=${currentPage}`);
+                const data = await res.json();
+
+                // Add articles to list
+                data.articles.forEach(article => {
+                    let newItem = getNewMediaItem(article);
+                    list.appendChild(newItem);
+                });
+
+                hasMore = data.has_next;
+                if (!hasMore) {
+                    loader.textContent = "Keine weiteren Artikel.";
+                }
+
+                currentPage += 1;
+            } catch (err) {
+                console.error("Fehler beim Laden der Artikel:", err);
+                loader.textContent = "Fehler beim Laden.";
+            }
+            loading = false;
+        }
+
+        window.addEventListener("scroll", () => {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+                loadArticles();
+            }
         })
-*/
     </script>
 </body>
 </html>
