@@ -1,27 +1,35 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"
+        integrity="sha512-H+rglffZ6f5gF7UJgvH4Naa+fGCgjrHKMgoFOGmcPTRwR6oILo5R+gtzNrpDp7iMV3udbymBVjkeZGNz1Em4rQ=="
+        crossorigin="anonymous" defer></script>
+    <script src="{{ url_for('static', filename='index.js') }}" defer></script>
     <title>Schlagzeilensammler</title>
 </head>
+
 <body>
     <h1>Willkommen beim Schlagzeilensammler</h1>
     <p>Es gibt aktuell {{ count }} Einträge in der Datenbank.</p>
     <button id="fetch-rss" type="button">Aktualisieren</button>
-    <a id="add-channel" href="/channels/new" >Neuen Channel hinzufügen</a>
+    <a id="add-channel" href="/channels/new">Neuen Channel hinzufügen</a>
     <!-- News articles go here using the following template-->
     <ol id="articles-list">
         <!-- -->
     </ol>
-    
+
     <template id="media-template">
         <li class="media-item">
             <div class="media-item-header">
                 <img class="media-icon" src="https://www.faz.net/favicon.svg" alt="FAZ-Icon">
                 <span class="media-date"></span>
-                <a class="media-link" ><h3 class="media-title"></h3></a>
+                <a class="media-link">
+                    <h3 class="media-title"></h3>
+                </a>
             </div>
             <div class="media-content">
             </div>
@@ -30,93 +38,6 @@
     <!-- End of news articles list -->
 
     <div id="loader" style="text-align: center; padding: 20px;">Lade mehr Artikel...</div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            if (typeof DOMPurify !== "undefined") {
-                console.log("DOMPurify ist bereit!");
-            } else {
-                console.error("DOMPurify konnte nicht geladen werden.");
-            }
-            loadArticles();
-        });
-
-         async function fetchArticles(source) {
-            const response = await fetch(source);
-            const data = await response.json();
-            return(data["articles"]);
-        }
-
-        function getNewMediaItem(article) {
-            const template = document.getElementById("media-template");
-            let clone = template.content.cloneNode(true);
-            clone.querySelector(".media-title").textContent = article.title;
-            clone.querySelector(".media-date").textContent = article.published;
-            clone.querySelector(".media-content").insertAdjacentHTML("afterbegin", DOMPurify.sanitize(article.description));
-            clone.querySelector(".media-link").href = article.link;
-            return(clone);
-        }
-
-        const b = document.getElementById("fetch-rss")
-        b.addEventListener("click", async function() {
-            
-            const list = document.getElementById("articles-list");
-            
-            // Add articles to list
-            let new_articles = await fetchArticles("/fetch-articles/rss")
-            new_articles.forEach(article => {
-                newItem = getNewMediaItem(article);
-                // Flash
-                let newMediaItem = newItem.firstElementChild;
-                newMediaItem.classList.add("flash");
-                list.appendChild(newItem);
-                setTimeout(() => {
-                    newMediaItem.classList.remove("flash");
-                }, 5000);
-            })
-        })
-
-        let currentPage = 1;
-        let loading = false;
-        let hasMore = true;
-
-        const list = document.getElementById("articles-list");
-        const loader = document.getElementById("loader");
-
-        async function loadArticles() {
-            if (loading || !hasMore) return;
-
-            loading = true;
-
-            try {
-                const res = await fetch(`/fetch-articles/db?page=${currentPage}`);
-                const data = await res.json();
-
-                // Add articles to list
-                data.articles.forEach(article => {
-                    let newItem = getNewMediaItem(article);
-                    list.appendChild(newItem);
-                });
-
-                hasMore = data.has_next;
-                if (!hasMore) {
-                    loader.textContent = "Keine weiteren Artikel.";
-                }
-
-                currentPage += 1;
-            } catch (err) {
-                console.error("Fehler beim Laden der Artikel:", err);
-                loader.textContent = "Fehler beim Laden.";
-            }
-            loading = false;
-        }
-
-        window.addEventListener("scroll", () => {
-            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
-                loadArticles();
-            }
-        })
-    </script>
 </body>
+
 </html>
