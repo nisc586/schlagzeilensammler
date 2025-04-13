@@ -53,21 +53,24 @@ def index():
 
 @main.route("/fetch-articles/rss", methods=["GET"])
 def get_articles_from_rss():
-    RSS_URL = "https://www.faz.net/rss/aktuell/"  # TODO: Use different newspapers
     DT_FMT = "%a, %d %b %Y %H:%M:%S %z"
+    channel_id = request.args.get("channel_id", 1, type=int)
 
-    feed = feedparser.parse(RSS_URL)
+    channel = Channel.query.get(channel_id)
+    if not channel:
+        return jsonify({"error": f"Channel with {channel_id=} not found."}), 400
 
+    feed = feedparser.parse(channel.link)
     new_articles = []
     for entry in feed.entries:
         # Do not insert duplicates into database
         if not Article.query.filter_by(title=entry.title).first():
             new_article = Article(
-                title=entry.title,
-                link=entry.link,
-                published=datetime.strptime(entry.published, DT_FMT),
-                description=entry.description,
-                channel_id=1  # TODO: Implement newspapers model
+                title = entry.title,
+                link = entry.link,
+                published = datetime.strptime(entry.published, DT_FMT),
+                description = entry.description,
+                channel_id = channel_id
             )
             db.session.add(new_article)
             new_articles.append(new_article.to_dict())
