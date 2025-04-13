@@ -28,7 +28,7 @@ body {
 
 #articles-list {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     list-style-type: none;
     padding-inline-start: 0px;
 }

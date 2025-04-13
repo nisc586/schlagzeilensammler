@@ -29,7 +29,7 @@ fetchButton.addEventListener("click", async function() {
             newMediaItem.classList.remove("flash");
         }, 5000);
         
-        articlesList.appendChild(newItem);
+        articlesList.insertBefore(newItem, articlesList.firstChild);
     })
 })
 
