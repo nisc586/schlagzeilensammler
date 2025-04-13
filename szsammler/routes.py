@@ -7,48 +7,11 @@ from datetime import datetime
 
 main = Blueprint("main", __name__)
 
-mock_data = [
-{
-    'id': 1,
-    'title': 'Aktuell - FAZ.NET',
-    'link': 'https://www.faz.net/rss/aktuell/',
-    'description': 'News, Nachrichten und aktuelle Meldungen aus allen Ressorts. Politik, Wirtschaft, Sport, Feuilleton und Finanzen im Überblick.',
-    'image_url': 'https://icons.duckduckgo.com/ip3/faz.net.ico'
-},
-{
-    'id': 2,
-    'title': 'Spiegel Online – Die große Nachrichtenübersicht aus dem In- und Ausland',
-    'link': 'https://www.spiegel.de/schlagzeilen/tops/index.rss',
-    'description': 'Aktuelle Nachrichten, Reportagen, Interviews, Videos und Bilder aus Politik, Wirtschaft, Kultur und Sport. Alle Entwicklungen im Newsticker.',
-    'image_url': 'https://icons.duckduckgo.com/ip3/spiegel.de.ico'
-},
-{
-    'id': 3,
-    'title': 'TechNova – Zukunft, Innovation & digitale Trends',
-    'link': 'https://www.technova.io/rss',
-    'description': 'Entdecke spannende Artikel rund um Technologie, KI, digitale Transformation, Start-ups und wissenschaftliche Durchbrüche – täglich neu.',
-    'image_url': 'https://icons.duckduckgo.com/ip3/technova.io.ico'
-},
-{
-    'id': 4,
-    'title': 'Local Times – Regionales aus deiner Umgebung',
-    'link': 'https://www.localtimes.example/rss',
-    'description': 'Nachrichten aus deiner Region, Veranstaltungen, Wetter und Verkehrsmeldungen. Alles, was du für deinen Alltag wissen musst, an einem Ort.',
-    'image_url': 'https://icons.duckduckgo.com/ip3/localtimes.example.ico'
-},
-{
-    'id': 5,
-    'title': 'World Digest – Globale News kompakt zusammengefasst',
-    'link': 'https://www.worlddigest.news/rss',
-    'description': 'Internationale Nachrichten, Krisen, Analysen und Hintergrundberichte in einer kompakten täglichen Übersicht. Ideal für Vielbeschäftigte.',
-    'image_url': 'https://icons.duckduckgo.com/ip3/worlddigest.news.ico'
-}]
-
-
 @main.route("/")
 def index():
     count = Article.query.count()
-    return render_template("index.html.j2", count=count, channels=mock_data)
+    channels = [ch.to_dict() for ch in Channel.query.all()]
+    return render_template("index.html.j2", count=count, channels=channels)
 
 
 @main.route("/fetch-articles/rss", methods=["GET"])
@@ -85,7 +48,7 @@ def get_articles_from_db():
     channel_id = request.args.get("channel_id", 1, type=int)
     per_page = 20
 
-    pagination = Article.query.where(Article.channel_id == channel_id).order_by(Article.published).paginate(page=page, per_page=per_page)
+    pagination = Article.query.where(Article.channel_id == channel_id).order_by(Article.published.desc()).paginate(page=page, per_page=per_page)
     articles = [article.to_dict() for article in pagination.items]
     return jsonify({
         "articles": articles,
@@ -100,7 +63,8 @@ def channels_():
 
 @main.route("/channels")
 def channels():
-    return render_template("channels.html", channels=mock_data)
+    channels = [ch.to_dict() for ch in Channel.query.all()]
+    return render_template("channels.html", channels=channels)
 
 
 @main.route("/channels/new", methods=["GET", "POST"])
@@ -148,4 +112,4 @@ def create_new_channel():
 
 @main.route("/channels/list")
 def channels_list():
-    return jsonify(mock_data)
+    return jsonify([ch.to_dict() for ch in Channel.query.all()])
