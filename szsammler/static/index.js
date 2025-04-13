@@ -42,12 +42,12 @@ let hasMore = true;
 const loader = document.getElementById("loader");
 /* articlesList got declared earlier*/
 
-async function loadArticles() {
+async function loadArticles(channel_id=1) {
     if (loading || !hasMore) return;
 
     loading = true;
     try {
-        const response = await fetch(`/fetch-articles/db?page=${currentPage}`);
+        const response = await fetch(`/fetch-articles/db?page=${currentPage}&channel_id=${channel_id}`);
         const data = await response.json();
 
         data.articles.forEach(article => {
@@ -73,6 +73,11 @@ window.addEventListener("scroll", () => {
         loadArticles();
     }
 })
+
+async function reloadArticles(channel_id=1) {
+    articlesList.innerHTML = "";
+    loadArticles(channel_id);
+}
 
 /* Main */
 if (typeof DOMPurify !== "undefined") {

@@ -14,9 +14,17 @@
 
 <body>
     <h1>Willkommen beim Schlagzeilensammler</h1>
-    <p>Es gibt aktuell {{ count }} Einträge in der Datenbank.</p>
-    <button id="fetch-rss" type="button">Aktualisieren</button>
     <a id="add-channel" href="/channels/new">Neuen Channel hinzufügen</a>
+    <ul id="channels-list-index">
+        {% for channel in channels %}
+        <li class="channels-item">
+            <button onclick="reloadArticles({{ channel['id'] }})">
+                <img src="{{ channel['image_url'] }}" width="60px" height="60px" alt="{{ channel['title'] }}"/>
+            </button>
+        </li>
+        {% endfor %}
+    </ul>
+    <button id="fetch-rss" type="button">Aktualisieren</button>
     <!-- News articles go here using the following template-->
     <ol id="articles-list">
         <!-- -->
