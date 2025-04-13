@@ -48,7 +48,7 @@ mock_data = [
 @main.route("/")
 def index():
     count = Article.query.count()
-    return render_template("index.html", count=count, channles=mock_data)
+    return render_template("index.html.j2", count=count, channels=mock_data)
 
 
 @main.route("/fetch-articles/rss", methods=["GET"])
@@ -82,9 +82,10 @@ def get_articles_from_rss():
 @main.route("/fetch-articles/db", methods=["GET"])
 def get_articles_from_db():
     page = request.args.get("page", 1, type=int)
+    channel_id = request.args.get("channel_id", 1, type=int)
     per_page = 20
 
-    pagination = Article.query.order_by(Article.published).paginate(page=page, per_page=per_page)
+    pagination = Article.query.where(Article.channel_id == channel_id).order_by(Article.published).paginate(page=page, per_page=per_page)
     articles = [article.to_dict() for article in pagination.items]
     return jsonify({
         "articles": articles,
