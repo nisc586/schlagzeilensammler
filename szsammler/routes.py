@@ -89,6 +89,8 @@ def create_new_channel():
         # feed.link does not necessarily link to the rss-channel.
         # In the xml it typically is the atom:link, that points to the rss-URL.
         # The parsed feed does not distinguish between namespaces as far as I know
+        # Fallback on the link provided by user
+        channel_link = rss_url
         for link in feed.links:
             if (link["type"] == "application/rss+xml"):
                 channel_link = link["href"]
@@ -101,9 +103,9 @@ def create_new_channel():
                 description = feed.description,
                 image_url = feed.image.url,
             )
-            # TODO: add channel to the database
-        
-        # TODO: redirect to channels page
+            db.session.add(new_channel)
+            db.session.commit()
+
         return redirect(url_for('main.channels'))
     else:
         # GET request

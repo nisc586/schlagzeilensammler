@@ -10,12 +10,19 @@ function getNewMediaItem(article) {
 }
 
 
-/* Articles Refresh Logic */
+/* Articles Load and Refresh Logic */
 const articlesList = document.getElementById("articles-list");
 const fetchButton = document.getElementById("fetch-rss")
+const loader = document.getElementById("loader");
+
+let currentPage = 1;
+let loading = false;
+let hasMore = true;
+let activeChannelId = 1;
+
 
 fetchButton.addEventListener("click", async function() {
-    const response = await fetch("/fetch-articles/rss");
+    const response = await fetch(`/fetch-articles/rss?channel_id=${activeChannelId}`);
     const data = await response.json();
 
     data.articles.forEach(article => {
@@ -34,20 +41,12 @@ fetchButton.addEventListener("click", async function() {
 })
 
 
-/* Load Articles Logic */
-let currentPage = 1;
-let loading = false;
-let hasMore = true;
-
-const loader = document.getElementById("loader");
-/* articlesList got declared earlier*/
-
-async function loadArticles(channel_id=1) {
+async function loadArticles() {
     if (loading || !hasMore) return;
 
     loading = true;
     try {
-        const response = await fetch(`/fetch-articles/db?page=${currentPage}&channel_id=${channel_id}`);
+        const response = await fetch(`/fetch-articles/db?page=${currentPage}&channel_id=${activeChannelId}`);
         const data = await response.json();
 
         data.articles.forEach(article => {
@@ -74,9 +73,10 @@ window.addEventListener("scroll", () => {
     }
 })
 
-async function reloadArticles(channel_id=1) {
+async function reloadArticles(channelId=1) {
     articlesList.innerHTML = "";
-    loadArticles(channel_id);
+    activeChannelId = channelId;
+    loadArticles();
 }
 
 /* Main */
