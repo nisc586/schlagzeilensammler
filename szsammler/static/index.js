@@ -21,7 +21,7 @@ let hasMore = true;
 let activeChannelId = 1;
 
 
-fetchButton.addEventListener("click", async function() {
+async function fetchNew() {
     const response = await fetch(`/fetch-articles/rss?channel_id=${activeChannelId}`);
     const data = await response.json();
 
@@ -38,7 +38,7 @@ fetchButton.addEventListener("click", async function() {
         
         articlesList.insertBefore(newItem, articlesList.firstChild);
     })
-})
+}
 
 
 async function loadArticles() {
@@ -74,9 +74,15 @@ window.addEventListener("scroll", () => {
 })
 
 async function reloadArticles(channelId=1) {
-    articlesList.innerHTML = "";
     activeChannelId = channelId;
+
+    // Reset loading
+    articlesList.innerHTML = "";
+    currentPage = 1;
+    loading = false;
+    hasMore = true;
     loadArticles();
+    fetchNew();
 }
 
 /* Main */
