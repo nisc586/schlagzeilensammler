@@ -1,20 +1,14 @@
-<!DOCTYPE html>
-<html lang="de">
+{% extends "base.html.j2" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"
-        integrity="sha512-H+rglffZ6f5gF7UJgvH4Naa+fGCgjrHKMgoFOGmcPTRwR6oILo5R+gtzNrpDp7iMV3udbymBVjkeZGNz1Em4rQ=="
-        crossorigin="anonymous" defer></script>
+{% block title %}Schlagzeilensammler{% endblock %}
+{% block heading %}Schlagzeilensammler{% endblock heading %}
+
+{% block head %}
+    {{ super() }}
     <script src="{{ url_for('static', filename='index.js') }}" defer></script>
-    <title>Schlagzeilensammler</title>
-</head>
+{% endblock head %}
 
-<body>
-    <h1>Willkommen beim Schlagzeilensammler</h1>
-    <a id="add-channel" href="/channels/new">Neuen Channel hinzufügen</a>
+{% block content %}
     <ul id="channels-list-index">
         {% for channel in channels %}
         <li class="channels-item">
@@ -46,6 +40,4 @@
     <!-- End of news articles list -->
 
     <div id="loader" style="text-align: center; padding: 20px;">Lade mehr Artikel...</div>
-</body>
-
-</html>
+{% endblock content %}

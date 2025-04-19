@@ -64,7 +64,7 @@ def channels_():
 @main.route("/channels")
 def channels():
     channels = [ch.to_dict() for ch in Channel.query.all()]
-    return render_template("channels.html", channels=channels)
+    return render_template("channels.html.j2", channels=channels)
 
 
 @main.route("/channels/new", methods=["GET", "POST"])

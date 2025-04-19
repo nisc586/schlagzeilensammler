@@ -1,0 +1,11 @@
+{% extends "base.html.j2" %}
+{% block title %}Channels{% endblock title %}
+{% block heading %}Channels{% endblock heading %}
+
+{% block content %}
+<ul id="channels-list">
+        {% for channel in channels %}
+            <li class="channels-item"><img src="{{ channel['image_url'] }}" width="30px" height="30px"/>{{ channel["title"] }}</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

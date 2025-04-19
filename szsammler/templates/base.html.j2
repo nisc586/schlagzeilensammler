@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"
+        integrity="sha512-H+rglffZ6f5gF7UJgvH4Naa+fGCgjrHKMgoFOGmcPTRwR6oILo5R+gtzNrpDp7iMV3udbymBVjkeZGNz1Em4rQ=="
+        crossorigin="anonymous" defer></script>
+    {% endblock head %}
+</head>
+
+<body>
+    <header>
+        <h1>{% block heading %}{% endblock heading %}</h1>
+        <nav>
+            <a href="/">Start</a>
+            <a id="add-channel" href="/channels/">Channels</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock content %}
+    </main>
+</body>
+
+</html>
