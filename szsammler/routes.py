@@ -106,10 +106,7 @@ def create_new_channel():
             db.session.add(new_channel)
             db.session.commit()
 
-        return redirect(url_for('main.channels'))
-    else:
-        # GET request
-        return render_template("channels_new.html")
+    return redirect(url_for('main.channels'))
 
 
 @main.route("/channels/list")

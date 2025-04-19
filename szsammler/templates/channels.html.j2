@@ -3,9 +3,16 @@
 {% block heading %}Channels{% endblock heading %}
 
 {% block content %}
-<ul id="channels-list">
+    <ul id="channels-list">
         {% for channel in channels %}
-            <li class="channels-item"><img src="{{ channel['image_url'] }}" width="30px" height="30px"/>{{ channel["title"] }}</li>
+        <li class="channels-item"><img src="{{ channel['image_url'] }}" width="30px" height="30px" />{{ channel["title"] }}
+        </li>
         {% endfor %}
     </ul>
+    <h2>Neuen RSS-Channel abbonieren</h2>
+    <form action="/channels/new" method="post">
+        <label for="rss_url">RSS Link:</label>
+        <input type="text" id="rss_url" name="rss_url" required>
+        <button type="submit">Hinzufügen</button>
+    </form>
 {% endblock content %}
