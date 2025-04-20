@@ -9,8 +9,8 @@
         </li>
         {% endfor %}
     </ul>
-    <h2>Neuen RSS-Channel abbonieren</h2>
-    <form action="/channels/new" method="post">
+    <form id="new-channels-form" action="/channels/new" method="post">
+        <h2>Neuen RSS-Channel abbonieren</h2>
         <label for="rss_url">RSS Link:</label>
         <input type="text" id="rss_url" name="rss_url" required>
         <button type="submit">Hinzufügen</button>

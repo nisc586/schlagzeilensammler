@@ -1,30 +1,87 @@
+/* ===== Basic Template ===== */
 h1 {
     color: rgb(31, 52, 110);
+}
+
+h2 {
+    text-align: center;
 }
 
 body {
     margin: 2%;
 }
 
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: baseline;
+    background-color: lightgray;
+}
+
+header h1 {
+    min-width: 300px;
+    margin: 0 2em;
+}
+
+header nav a {
+    margin-right: 1em;
+    font-size: 18px;
+    color: black;
+    text-decoration: none;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Channels Page ===== */
 #channels-list {
     display: flex;
     flex-direction: column;
-    gap: 1em;
     list-style-type: none;
     padding-inline-start: 0px;
-}
-
-#channels-list-index {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    margin: 1em;
+    border: 2px solid grey;
 }
 
 .channels-item {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
+    justify-content: space-between;
+    background-color: rgb(207, 221, 238);
+    margin: 10px 2.5%;
+    padding: 5px;
 }
+
+.channels-item img {
+    width: auto;
+    height: 30px;
+}
+
+#new-channels-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 1em;
+    gap: 1em;
+}
+
+#new-channels-form h2 {
+    font-size: 1.2em;
+    margin: 0px;
+}
+
+
+/* ===== Index Page ===== */
+#channels-list-index {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
 
 #articles-list {
     display: flex;
