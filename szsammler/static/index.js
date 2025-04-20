@@ -6,6 +6,12 @@ function getNewMediaItem(article) {
     clone.querySelector(".media-date").textContent = article.published;
     clone.querySelector(".media-content").insertAdjacentHTML("afterbegin", DOMPurify.sanitize(article.description));
     clone.querySelector(".media-link").href = article.link;
+
+    const channel = channelMap[activeChannelId]; // channelMap defined on server side in the template
+    if (channel && channel.image_url) {
+        clone.querySelector(".media-icon").src = channel.image_url;
+        clone.querySelector(".media-icon").alt = channel.name || "Channel Icon";
+    }
     return(clone);
 }
 
@@ -34,11 +40,11 @@ async function fetchNew() {
         
         setTimeout(() => {
             newMediaItem.classList.remove("flash");
-        }, 5000);
+        }, 5000);    
         
         articlesList.insertBefore(newItem, articlesList.firstChild);
-    })
-}
+    })    
+}    
 
 
 async function loadArticles() {
@@ -52,26 +58,26 @@ async function loadArticles() {
         data.articles.forEach(article => {
             let newItem = getNewMediaItem(article);
             articlesList.appendChild(newItem);
-        });
+        });    
 
         hasMore = data.has_next;
         if (!hasMore) {
             loader.textContent = "Keine weiteren Artikel.";
-        }
+        }    
 
         currentPage += 1;
     } catch (err) {
         console.error("Fehler beim Laden der Artikel:", err);
         loader.textContent = "Fehler beim Laden.";
-    }
+    }    
     loading = false;
-}
+}    
 
 window.addEventListener("scroll", () => {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
         loadArticles();
-    }
-})
+    }    
+})    
 
 async function reloadArticles(channelId=1) {
     activeChannelId = channelId;
@@ -83,7 +89,7 @@ async function reloadArticles(channelId=1) {
     hasMore = true;
     loadArticles();
     fetchNew();
-}
+}    
 
 /* Main */
 if (typeof DOMPurify !== "undefined") {

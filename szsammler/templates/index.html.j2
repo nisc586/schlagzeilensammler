@@ -5,6 +5,16 @@
 
 {% block head %}
     {{ super() }}
+    <script>
+        const channelMap = {
+        {% for channel in channels %}
+        {{ channel['id'] }}: {
+            name: {{ channel['title']|tojson }},
+            image_url: {{ channel['image_url']|tojson }},
+        },
+        {% endfor %}
+        };
+    </script>
     <script src="{{ url_for('static', filename='index.js') }}" defer></script>
 {% endblock head %}
 
@@ -27,7 +37,7 @@
     <template id="media-template">
         <li class="media-item">
             <div class="media-item-header">
-                <img class="media-icon" src="https://www.faz.net/favicon.svg" alt="FAZ-Icon">
+                <img class="media-icon">
                 <span class="media-date"></span>
                 <a class="media-link">
                     <h3 class="media-title"></h3>
