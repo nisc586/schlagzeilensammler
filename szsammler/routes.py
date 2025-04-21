@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, jsonify, request, redirect, url_fo
 from . import db
 from .models import Article, Channel
 import feedparser
-from datetime import datetime
+from dateutil import parser as dateparser
 
 main = Blueprint("main", __name__)
 
@@ -16,7 +16,6 @@ def index():
 
 @main.route("/fetch-articles/rss", methods=["GET"])
 def get_articles_from_rss():
-    DT_FMT = "%a, %d %b %Y %H:%M:%S %z"
     channel_id = request.args.get("channel_id", 1, type=int)
 
     channel = Channel.query.get(channel_id)
@@ -31,8 +30,8 @@ def get_articles_from_rss():
             new_article = Article(
                 title = entry.title,
                 link = entry.link,
-                published = datetime.strptime(entry.published, DT_FMT),
-                description = entry.description,
+                published = dateparser.parse(entry.published),
+                description = entry.get("description", ""),
                 channel_id = channel_id
             )
             db.session.add(new_article)
