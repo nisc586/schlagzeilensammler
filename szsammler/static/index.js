@@ -3,9 +3,17 @@ const template = document.getElementById("media-template");
 function getNewMediaItem(article) {
     let clone = template.content.cloneNode(true);
     clone.querySelector(".media-title").textContent = article.title;
-    clone.querySelector(".media-date").textContent = article.published;
     clone.querySelector(".media-content").insertAdjacentHTML("afterbegin", DOMPurify.sanitize(article.description));
     clone.querySelector(".media-link").href = article.link;
+
+    const date = new Date(article.published);
+    const formatted = new Intl.DateTimeFormat("de-DE", {
+        weekday: "long",
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        }).format(date);
+    clone.querySelector(".media-date").textContent = formatted
 
     const channel = channelMap[activeChannelId]; // channelMap defined on server side in the template
     if (channel && channel.image_url) {
