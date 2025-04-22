@@ -11,8 +11,7 @@ class Article(db.Model):
     link: Mapped[str] = mapped_column(String, nullable=False)
     published: Mapped[datetime] = mapped_column(DateTime)
     description: Mapped[str] = mapped_column(String)
-    channel_id: Mapped[int] = mapped_column(Integer, ForeignKey("channel.id"), nullable=False)
-    channel: Mapped["Channel"] = relationship("Channel", backref=backref("articles", lazy=True))
+    channel_id: Mapped[int] = mapped_column(Integer, ForeignKey("channel.id", ondelete='CASCADE'), nullable=False)
 
     def __repr__(self):
         return f"Article({self.id=}, {self.title=})"
@@ -33,6 +32,7 @@ class Channel(db.Model):
     link: Mapped[str] = mapped_column(String, nullable=False)
     description: Mapped[str] = mapped_column(String, nullable=False)
     image_url: Mapped[str] = mapped_column(String, nullable=True)
+    articles: Mapped["Article"] = relationship("Article", backref="articles", cascade="all, delete-orphan", passive_deletes=True)
 
     def __repr__(self):
         return f"Channel({self.id=}, {self.title=})"
