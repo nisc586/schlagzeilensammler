@@ -111,3 +111,19 @@ def create_new_channel():
 @main.route("/channels/list")
 def channels_list():
     return jsonify([ch.to_dict() for ch in Channel.query.all()])
+
+
+@main.route('/channels/<int:channel_id>/delete', methods=['POST'])
+def delete_channel(channel_id):
+    channel = Channel.query.get_or_404(channel_id)
+    db.session.delete(channel)
+    db.session.commit()
+    return redirect(url_for('main.channels'))
+
+    
+
+@main.route('/channels/<int:channel_id>/article_count')
+def get_article_count(channel_id):
+    channel = Channel.query.get_or_404(channel_id)
+    count = len(channel.articles.query.filter(Article.channel_id == channel_id).all())
+    return jsonify({'count': count})

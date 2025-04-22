@@ -2,10 +2,18 @@
 {% block title %}Channels{% endblock title %}
 {% block heading %}Channels{% endblock heading %}
 
+{% block head %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='channels.js') }}" defer></script>
+{% endblock head%}
+
 {% block content %}
     <ul id="channels-list">
         {% for channel in channels %}
-        <li class="channels-item"><img src="{{ channel['image_url'] }}" width="30px" height="30px" />{{ channel["title"] }}
+        <li class="channels-item">
+            <img src="{{ channel['image_url'] }}" width="30px" height="30px" />
+            {{ channel["title"] }}
+            <button onclick="confirmDelete({{ channel['id'] }})">Löschen</button>
         </li>
         {% endfor %}
     </ul>
