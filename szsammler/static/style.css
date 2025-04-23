@@ -1,4 +1,4 @@
-/* ===== Basic Template ===== */
+/* ===== Basic Template / Shared Styles ===== */
 h1 {
     color: rgb(31, 52, 110);
 }
@@ -33,6 +33,15 @@ header nav a {
 
 header nav a:hover {
     text-decoration: underline;
+}
+
+@keyframes flash {
+    0% {background-color: yellow; }
+    100% {background-color: transparent;}
+}
+
+.flash {
+    animation: flash 1s ease-out;
 }
 
 /* ===== Channels Page ===== */
@@ -74,6 +83,11 @@ header nav a:hover {
     margin: 0px;
 }
 
+.temporary-message {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 
 /* ===== Index Page ===== */
 #channels-list-index {
@@ -115,15 +129,6 @@ header nav a:hover {
     border-radius: 8px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     background-color: #fff;
-}
-
-@keyframes flash {
-    0% {background-color: yellow; }
-    100% {background-color: transparent;}
-}
-
-.flash {
-    animation: flash 1s ease-out;
 }
 
 @media (max-width: 500px) {

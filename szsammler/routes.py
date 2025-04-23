@@ -1,5 +1,5 @@
 from json import JSONDecodeError
-from flask import Blueprint, render_template, jsonify, request, redirect, url_for
+from flask import Blueprint, render_template, jsonify, request, redirect, url_for, flash
 from . import db
 from .models import Article, Channel
 import feedparser
@@ -69,20 +69,17 @@ def channels():
 @main.route("/channels/new", methods=["GET", "POST"])
 def create_new_channel():
     if request.method == "POST":
-        if request.content_type == "application/json":
-            if not request.data:
-                return jsonify({"error": "Missing payload, 'rss_url' is required."}), 400
-            rss_url = request.get_json().get("rss_url")
-        else:
-            # default for forms application/x-www-form-urlencoded
-            rss_url = request.form["rss_url"]
+        # default for forms application/x-www-form-urlencoded
+        rss_url = request.form["rss_url"]
 
         if not rss_url:
-            return jsonify({"error": "RSS Url is required."}), 400
+            flash("Required URL is missing.")
+            return redirect(url_for('main.channels'))
         
         rss = feedparser.parse(rss_url)
         if rss.bozo:
-            return jsonify({"error": f"Invalid RSS feed at: {rss_url}"}), 400
+            flash("Could not find RSS feed at URL.")
+            return redirect(url_for('main.channels'))
         
         feed = rss.feed
         # feed.link does not necessarily link to the rss-channel.
@@ -95,7 +92,7 @@ def create_new_channel():
                 channel_link = link["href"]
                 break
         
-        if not Channel.query.filter_by(link=feed.link).first():
+        if not Channel.query.filter_by(link=channel_link).first():
             new_channel = Channel(
                 title = feed.title,
                 link = channel_link,
@@ -104,6 +101,9 @@ def create_new_channel():
             )
             db.session.add(new_channel)
             db.session.commit()
+            flash(f"Added new channel - {feed.title}")
+        else:
+            flash(f"Channel from {channel_link} already exists.")
 
     return redirect(url_for('main.channels'))
 

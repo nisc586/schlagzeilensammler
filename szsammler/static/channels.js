@@ -16,3 +16,8 @@ function confirmDelete(channelId) {
             }
         });
 }
+
+
+function dismissMessage(btn) {
+    btn.closest(".temporary-message").remove()
+}

@@ -23,4 +23,14 @@
         <input type="text" id="rss_url" name="rss_url" required>
         <button type="submit">Hinzufügen</button>
     </form>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="temporary-message">
+                <p class="flash">{{ message }}</p>
+                <button onclick="dismissMessage(this)">X</button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
 {% endblock content %}
