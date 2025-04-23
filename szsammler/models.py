@@ -1,4 +1,5 @@
-from sqlalchemy.orm import mapped_column, Mapped, relationship, backref
+from typing import List
+from sqlalchemy.orm import mapped_column, Mapped, relationship
 from sqlalchemy import Integer, String, DateTime, ForeignKey
 from szsammler import db
 from datetime import datetime
@@ -32,7 +33,7 @@ class Channel(db.Model):
     link: Mapped[str] = mapped_column(String, nullable=False)
     description: Mapped[str] = mapped_column(String, nullable=False)
     image_url: Mapped[str] = mapped_column(String, nullable=True)
-    articles: Mapped["Article"] = relationship("Article", backref="articles", cascade="all, delete-orphan", passive_deletes=True)
+    articles: Mapped[List["Article"]] = relationship("Article", backref="articles", cascade="all, delete-orphan", passive_deletes=True)
 
     def __repr__(self):
         return f"Channel({self.id=}, {self.title=})"

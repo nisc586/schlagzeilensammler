@@ -20,7 +20,6 @@ def create_app(config_class=Config):
 
     with app.app_context():
         from .routes import main  # delayed import to avoid circular import
-        # TODO: What is best practice for creating the database? 
         db.create_all()
 
     
