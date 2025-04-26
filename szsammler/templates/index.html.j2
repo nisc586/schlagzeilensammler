@@ -21,7 +21,7 @@
 {% block content %}
     <ul id="channels-list-index">
         {% for channel in channels %}
-        <li class="channels-item">
+        <li class="channels-item-index">
             <button onclick="reloadArticles({{ channel['id']}})">
                 <img src="{{ channel['image_url'] }}" width="60px" height="60px" alt="{{ channel['title'] }}"/>
             </button>
@@ -38,10 +38,10 @@
         <li class="media-item">
             <div class="media-item-header">
                 <img class="media-icon">
+                <span class="media-date"></span>
                 <a class="media-link">
                     <h3 class="media-title"></h3>
                 </a>
-                <span class="media-date"></span>
             </div>
             <div class="media-content">
             </div>
