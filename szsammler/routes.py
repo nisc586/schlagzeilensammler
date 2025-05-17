@@ -70,7 +70,7 @@ def channels():
 def create_new_channel():
     if request.method == "POST":
         # default for forms application/x-www-form-urlencoded
-        rss_url = request.form["rss_url"]
+        rss_url = request.form.get("rss_url")
 
         if not rss_url:
             flash("Required URL is missing.")
