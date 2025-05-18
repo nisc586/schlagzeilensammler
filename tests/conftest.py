@@ -1,18 +1,21 @@
 import pytest
-from szsammler import create_app
+from szsammler import create_app, db
+from szsammler.config import TestConfig
 
 @pytest.fixture()
 def app():
-    app = create_app()
-    app.config.update({
-        "TESTING": True,
-    })
+    app = create_app(config_class=TestConfig)
 
-    # other setup can go here
+    with app.app_context():
+        # other setup can go here
+        db.create_all()
+        
+        yield app
 
-    yield app
+        # clean up / reset resources here
+        db.session.remove()
+        db.drop_all()
 
-    # clean up / reset resources here
 
 @pytest.fixture()
 def client(app):
